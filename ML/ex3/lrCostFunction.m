@@ -36,13 +36,29 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
+% Instrustions before "Regularized" it works only "Logistic Regression"
+%{ 
+Z = sigmoid(X*theta);
+C = (-y).*log(Z)-(ones(m,1).-y).*log(ones(m,1).-Z);
+J = (1/m)*sum(C);
 
+grad = (1/m)*(X'*(Z-y));
+%}
 
+% For cost (J)
+Z = sigmoid(X*theta);
+C = (-y).*log(Z)-(ones(m,1).-y).*log(ones(m,1).-Z);
+%oJ = theta.^2;
+%oJ(1) = 0;
+%same as bilow instruction
+%oJ = theta(2:end).^2;
+J = (1/m)*sum(C) + (lambda/(2*m))*sum(theta(2:end).^2);
 
-
-
-
-
+% For grad
+oT = (lambda/m)*theta;
+% You should not Regularoze "theta(1)", it works for "Bias"
+oT(1) = 0;
+grad = (1/m)*(X'*(Z-y)) + oT;
 
 
 % =============================================================

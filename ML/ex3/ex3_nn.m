@@ -40,7 +40,8 @@ m = size(X, 1);
 sel = randperm(size(X, 1));
 sel = sel(1:100);
 
-displayData(X(sel, :));
+% This function don't work in this work space %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% For ME
+%displayData(X(sel, :));
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
