@@ -61,24 +61,37 @@ Theta2_grad = zeros(size(Theta2));
 %               the regularization separately and then add them to Theta1_grad
 %               and Theta2_grad from Part 2.
 %
+n = 10;
+for i = 1:m
+	X1 = [1;X(i,:)'];
+	Z2 = [1;sigmoid(Theta1*X1)];
+	Z3 = sigmoid(Theta2*Z2);
+	Yi = zeros(n,1); 
+	if(y(i) == 0)
+		Yi(10) = 1;
+	else 
+		Yi(y(i,1)) = 1;
+	end
+	C = (-Yi).*log(Z3) - (ones(n,1).-Yi).*log(ones(n,1).-Z3);
+	J += sum(C);
+end;
+J = J*(1/m);
+%{
+% For cost (J)
+Z = sigmoid(X*theta);
+C = (-y).*log(Z)-(ones(m,1).-y).*log(ones(m,1).-Z);
+%oJ = theta.^2;
+%oJ(1) = 0;
+%same as bilow instruction
+%oJ = theta(2:end).^2;
+J = (1/m)*sum(C) + (lambda/(2*m))*sum(theta(2:end).^2);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+% For grad
+oT = (lambda/m)*theta;
+% You should not Regularoze "theta(1)", it works for "Bias"
+oT(1) = 0;
+grad = (1/m)*(X'*(Z-y)) + oT;
+%}
 
 % -------------------------------------------------------------
 

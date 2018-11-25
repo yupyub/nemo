@@ -39,7 +39,9 @@ m = size(X, 1);
 sel = randperm(size(X, 1));
 sel = sel(1:100);
 
-displayData(X(sel, :));
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% display don't work in ubuntu %%%%%%%%%%%%%%%%%
+%displayData(X(sel, :));
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
@@ -52,6 +54,7 @@ pause;
 fprintf('\nLoading Saved Neural Network Parameters ...\n')
 
 % Load the weights into variables Theta1 and Theta2
+% Already trained parameters
 load('ex4weights.mat');
 
 % Unroll parameters 
@@ -216,7 +219,8 @@ pause;
 
 fprintf('\nVisualizing Neural Network... \n')
 
-displayData(Theta1(:, 2:end));
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%displayData(Theta1(:, 2:end));
 
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
