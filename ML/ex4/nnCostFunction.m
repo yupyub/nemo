@@ -61,7 +61,8 @@ Theta2_grad = zeros(size(Theta2));
 %               the regularization separately and then add them to Theta1_grad
 %               and Theta2_grad from Part 2.
 %
-n = 10;
+n = size(Theta2,1); % This number may not be 10.
+R = 0; % Variable for Regularization 
 for i = 1:m
 	X1 = [1;X(i,:)'];
 	Z2 = [1;sigmoid(Theta1*X1)];
@@ -75,7 +76,10 @@ for i = 1:m
 	C = (-Yi).*log(Z3) - (ones(n,1).-Yi).*log(ones(n,1).-Z3);
 	J += sum(C);
 end;
-J = J*(1/m);
+R += sum(sum(Theta1(:,2:end).^2));
+R += sum(sum(Theta2(:,2:end).^2));
+J = J*(1/m) + (lambda/(2*m))*R;
+
 %{
 % For cost (J)
 Z = sigmoid(X*theta);
