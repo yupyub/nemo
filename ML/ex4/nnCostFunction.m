@@ -61,8 +61,8 @@ Theta2_grad = zeros(size(Theta2));
 %               the regularization separately and then add them to Theta1_grad
 %               and Theta2_grad from Part 2.
 %
-delta3 = zeros(size(Theta2));
-delta2 = zeros(size(Theta1));
+delta2 = zeros(size(Theta2));
+delta1 = zeros(size(Theta1));
 n = size(Theta2,1); % This number may not be 10.
 R = 0; % Variable for Regularization 
 for i = 1:m
@@ -79,18 +79,24 @@ for i = 1:m
 	J += sum(C);
 	%%
 	D3 = Z3 - Yi;
-	D2 = ((Theta2)'*D3).*(Z2.*(1.-Z2));
-	delta3 += D3'*Z3;
-	delta2 += D2'*Z2;
+	D2 = ((Theta2)'*D3).*(Z2.*(ones(size(Z2,1),1).-Z2)); 
+	delta2 += D3*Z2';
+	delta1 += D2(2:end,:)*X1';
 	%%
 end;
 R += sum(sum(Theta1(:,2:end).^2));
 R += sum(sum(Theta2(:,2:end).^2));
 J = J*(1/m) + (lambda/(2*m))*R;
 %%
-Theta2_grad = delta3./m + [zeros(size(Theta2,1),1) Theta2(:,2:end)].*lambda;
-Theta1_grad = delta2./m; + [zeros(size(Theta1,1),1) Theta1(:,2:end)].*lambda;
+% Wrong Code!
+%Theta2_grad = delta2./m + [zeros(size(Theta2,1),1) Theta2(:,2:end)].*lambda;
+%Theta1_grad = delta1./m + [zeros(size(Theta1,1),1) Theta1(:,2:end)].*lambda;
 %%
+% Right Code
+Theta2_grad = delta2 + [zeros(size(Theta2,1),1) Theta2(:,2:end)].*lambda;
+Theta1_grad = delta1 + [zeros(size(Theta1,1),1) Theta1(:,2:end)].*lambda;
+Theta2_grad = Theta2_grad./m;
+Theta1_grad = Theta1_grad./m;
 
 % -------------------------------------------------------------
 
