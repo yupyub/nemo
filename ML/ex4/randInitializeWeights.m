@@ -18,8 +18,13 @@ W = zeros(L_out, 1 + L_in);
 %
 % Note: The first column of W corresponds to the parameters for the bias unit
 %
+%%%%%%
+% The good choice of epsilon is to base it on the number of units in the network
+% A good choice of epsilon is 
+% epsilon := sqrt(6) / sqrt(L_in + L_out)
 
-
+epsilon_init = 0.12;
+W = rand(L_out,1+L_in) * 2 * epsilon_init - epsilon_init;
 
 
 
