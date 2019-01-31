@@ -34,7 +34,10 @@ end
 
 centroids ./= count;
 
-
+%{
+idxM = eye(K)(:,idx');
+centroids = (idxM * X)./(sum(idxM,2)*ones(1,n));
+%}
 
 
 
