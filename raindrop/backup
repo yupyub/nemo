@@ -1,0 +1,9 @@
+
+alias gobash='source ~/.bashrc'
+alias boj='cd Algorithm/boj'
+alias ML='cd nemo/ML'
+alias go1='git add -A'
+alias go2='git commit -m "boj"'
+alias go3='git push origin master'
+alias gogo='git add -A;git commit -m "boj";git push origin master'
+alias popo='git pull'
