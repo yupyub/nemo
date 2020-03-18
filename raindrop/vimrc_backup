@@ -1,5 +1,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   General Setting
+" curl https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim > ~/.vim/colors/molokai.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Sets history line
@@ -53,7 +54,7 @@ set incsearch
 syntax on
 
 " Use color scheme 'seti'
-"color seti
+color molokai
 
 
 
@@ -108,3 +109,16 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au BufReadPost *
+\ if line("'\"") > 0 && line("'\"") <= line("$") |
+\ exe "norm g`\"" |
+\ endif
+
+"set laststatus=2
+"set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
+
+if has("syntax")
+      syntax on
+       endif
