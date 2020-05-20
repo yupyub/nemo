@@ -3,6 +3,9 @@
 " curl https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim > ~/.vim/colors/molokai.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Fix Highlight error when scrolling
+autocmd VimEnter * set t_ut=
+
 " Sets history line
 set history=500
 
